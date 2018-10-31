@@ -1,23 +1,55 @@
 package com.example.bruce.triples_1_5;
 
 public class Card {
-    private int mcount;
-    private String mcolor;
-    private String mshape;
-    private String mshading;
+    private int mCount, mAlpha;
+    private Color mColor;
+    private Shape mShape;
+    private int mImageID, mselectedImageID ;
 
-
-    int value;
-    int value1;
-
-    public Card(int count, String color, String shape, String shading/*image*/){
-        mcount = count;
-        mcolor = color;
-        mshape = shape;
-        mshading = shading;
+    public enum Shape {
+        SQUARE, CIRCLE, TRIANGLE, NOSHAPE
     }
-    public void print(){
+    ;
+    public enum Color {
+        BLUE, RED, GREEN, NOCOLOR
     }
 
+    ;
+
+    public Card(int count, Color color, Shape shape, int alpha, int ImageID, int selectedImageID) {
+        mCount = count;
+        mColor = color;
+        mShape = shape;
+        mAlpha = alpha;
+        mImageID = ImageID;
+        mselectedImageID = selectedImageID;
 }
+
+
+
+    public int getCount() {
+        return mCount;
+    }
+
+    public Color getColor() {
+        return mColor;
+    }
+    public Shape getShape() {
+        return mShape;
+    }
+    public int getAlpha() {
+        return mAlpha;
+    }
+
+    public int getImageID() {
+        return mImageID;
+    }
+
+    public int getSelectedImageID() {
+        return mselectedImageID;
+    }
+}
+
+
+
 
