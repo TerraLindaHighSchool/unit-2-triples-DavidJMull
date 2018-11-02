@@ -7,16 +7,16 @@ public class Card {
     private int mImageID, mselectedImageID ;
 
     public enum Shape {
-        SQUARE, CIRCLE, TRIANGLE, NOSHAPE
+        SQUARE, CIRCLE, TRIANGLE, NO_SHAPE
     }
     ;
     public enum Color {
-        BLUE, RED, GREEN, NOCOLOR
+        BLUE, RED, GREEN, NO_COLOR
     }
 
     ;
 
-    public Card(int count, Color color, Shape shape, int alpha, int ImageID, int selectedImageID) {
+    public Card(Shape shape, Color color,  int alpha, int count, int ImageID, int selectedImageID) {
         mCount = count;
         mColor = color;
         mShape = shape;
@@ -30,7 +30,6 @@ public class Card {
     public int getCount() {
         return mCount;
     }
-
     public Color getColor() {
         return mColor;
     }
