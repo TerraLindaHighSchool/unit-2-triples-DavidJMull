@@ -16,13 +16,12 @@ public class Deck {
         for(int i=0;i < mOrderedDeck.length;i++) {
             mShuffledDeck.add(mOrderedDeck[i]);
         }
-        int rand;
-       int[] chosenNum = new int[mOrderedDeck.length];
-        for(int i=0;i < mOrderedDeck.length;i++) {
-         rand = (int)(Math.random() * mOrderedDeck.length);
-           mShuffledDeck.add(rand,mOrderedDeck[i]);
-           mShuffledDeck.remove(rand);
-       }
+            for (int i = 0; i < mShuffledDeck.size(); i++) {
+                int j = (int)(Math.random() * mShuffledDeck.size());
+                Card temp = mShuffledDeck.get(i);
+                mShuffledDeck.remove(i);
+                mShuffledDeck.add(j, temp);
+            }
     };
 
     public int getNumCardsInDeck( ){

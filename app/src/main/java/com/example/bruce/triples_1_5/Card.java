@@ -5,6 +5,7 @@ public class Card {
     private Color mColor;
     private Shape mShape;
     private int mImageID, mselectedImageID ;
+    private boolean mIsSelected;
 
     public enum Shape {
         SQUARE, CIRCLE, TRIANGLE, NO_SHAPE
@@ -46,6 +47,13 @@ public class Card {
 
     public int getSelectedImageID() {
         return mselectedImageID;
+    }
+
+    public void setIsSelected(boolean isSelected){
+        mIsSelected = isSelected;
+    }
+    public boolean getIsSelected() {
+        return mIsSelected;
     }
 }
 
