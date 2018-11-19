@@ -6,20 +6,20 @@ import java.util.ArrayList;
 public class GameModel {
     private Deck deck;
     private ArrayList<Card> mCardOnBoard;
-    private ArrayList<Integer> mSelectedCards;
+    private ArrayList<Integer> mSelectedCards = new ArrayList<>();
     private long mStartTime;
-    private int mScore, mTriplesRemaining, mLevel,mNumOfCardsInDeck;
+    private int mScore, mTriplesRemaining, mLevel, mNumOfCardsInDeck;
 
-    GameModel(int numOfCardsInDeck, int level){
+    GameModel(int numOfCardsInDeck, int level) {
         mLevel = level;
         mNumOfCardsInDeck = numOfCardsInDeck;
         mCardOnBoard = new ArrayList<>();
         deck = new Deck(numOfCardsInDeck);
     }
 
-/*************************************************
- * Getters and Setters
- *************************************************/
+    /*************************************************
+     * Getters and Setters
+     *************************************************/
 
 
     public Card getCardOnBoard(int index) {
@@ -27,7 +27,7 @@ public class GameModel {
     }
 
     public int getSelectedCardIndex(int index) {
-            return mSelectedCards.get(index);
+        return mSelectedCards.get(index);
     }
 
 
@@ -60,18 +60,18 @@ public class GameModel {
         return mNumOfCardsInDeck;
     }
 
-    public int getNumOfCardsSelected(){
+    public int getNumOfCardsSelected() {
         return mSelectedCards.size();
     }
 
     /*************************************************
      * Methods that place cards to board
      *************************************************/
-    protected void addCardToBoard(){
+    protected void addCardToBoard() {
         mCardOnBoard.add(deck.getTopCard());
     }
 
-    protected void replaceCardOnBoard(int index){
+    protected void replaceCardOnBoard(int index) {
         // to be implemented
     }
 
@@ -79,15 +79,15 @@ public class GameModel {
      * Methods that keep track of selected cards
      *************************************************/
 
-    protected void addSelectedCardIndex(int cardIndex){
+    protected void addSelectedCardIndex(int cardIndex) {
         mSelectedCards.add(cardIndex);
     }
 
-    protected void removeSelectedCardIndex(int cardIndex){
+    protected void removeSelectedCardIndex(int cardIndex) {
 
     }
 
-    protected void resetSelectedCardIndices(){
+    protected void resetSelectedCardIndices() {
         // to be implemented
     }
 
@@ -103,15 +103,34 @@ public class GameModel {
      * Methods that determine play
      *************************************************/
 
-    protected boolean isTriple(int firstCard, int secondCard, int thirdCard){
-        // to be implemented
-        return true; // temporary placeholder until implementation
+    protected boolean isTriple(int firstCard, int secondCard, int thirdCard) {
+        Card[] cards = {mCardOnBoard.get(firstCard), mCardOnBoard.get(secondCard), mCardOnBoard.get(thirdCard)};
+        if ((cards[0].getColor().ordinal() + cards[1].getColor().ordinal() + cards[2].getColor().ordinal()) % 3 == 0
+                && (cards[0].getShape().ordinal() + cards[1].getShape().ordinal() + cards[2].getShape().ordinal()) % 3 == 0
+                && (cards[0].getAlpha() + cards[1].getAlpha() + cards[2].getAlpha()) % 3 == 0
+                && (cards[0].getCount() + cards[1].getCount() + cards[2].getCount()) % 3 == 0) {
+            return true; // temporary placeholder until implementation
+        } else return false;
     }
 
-    protected boolean playIsPossible(){
+    protected boolean playIsPossible() {
         // to be implemented
-        return true;  // temporary placeholder until implementation
-    }
+        boolean truth = false;
+        for (int i = 0; i < mCardOnBoard.size(); i++) {
+            if (getCardOnBoard(i).getShape() == Card.Shape.NO_SHAPE) continue;
+            for (int r  = i +1; r < mCardOnBoard.size(); r++) {
+                if (getCardOnBoard(r).getShape() == Card.Shape.NO_SHAPE) continue;
+                for (int t = r  + 1; t < mCardOnBoard.size(); t++) {
+                    if (getCardOnBoard(t).getShape() == Card.Shape.NO_SHAPE) continue;
+                    if (isTriple(i, r, t)) truth = true;
+                }
+                }
+            }
+            return truth;
+        }
+
+
+
 
     protected String getGameOverMessage(Context context){
         String message = context.getString(R.string.game_over);

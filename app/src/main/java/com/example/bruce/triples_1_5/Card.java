@@ -8,11 +8,11 @@ public class Card {
     private boolean mIsSelected;
 
     public enum Shape {
-        SQUARE, CIRCLE, TRIANGLE, NO_SHAPE
+        NO_SHAPE, SQUARE, CIRCLE, TRIANGLE
     }
     ;
     public enum Color {
-        BLUE, RED, GREEN, NO_COLOR
+        NO_COLOR, BLUE, RED, GREEN
     }
 
     ;
